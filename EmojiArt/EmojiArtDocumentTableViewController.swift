@@ -10,6 +10,8 @@ import UIKit
 
 class EmojiArtDocumentTableViewController: UITableViewController {
     
+    
+    
     var emojiArtDocuments = ["One", "Two", "Three"]
 
     @IBAction func newEmojiArt(_ sender: UIBarButtonItem) {
