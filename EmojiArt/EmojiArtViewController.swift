@@ -35,7 +35,6 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
             return nil
         }
         set {
-            // we need to clear everything out
             emojiArtBackgroundImage = (nil, nil)
             emojiArtView.subviews.compactMap { $0 as? UILabel }.forEach { $0.removeFromSuperview() }
             // now we need to put the new thing in
@@ -57,39 +56,32 @@ class EmojiArtViewController: UIViewController, UIDropInteractionDelegate, UIScr
         }
     }
     
+    var document: EmojiArtDocument?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let url = try? FileManager.default.url(
-            for: .documentDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        ).appendingPathComponent("Untitled.json") {
-            if let jsonData = try? Data(contentsOf: url) {
-                emojiArt = EmojiArt(json: jsonData)
+        document?.open { success in
+            if success {
+                // maybe change the title
+                self.title = self.document?.localizedName
+                // but definetely set the model
+                self.emojiArt = self.document?.emojiArt
             }
         }
     }
     
     // MARK: - Storyboard
     
-    @IBAction func save(_ sender: UIBarButtonItem) {
-        if let json = emojiArt?.json {
-            if let url = try? FileManager.default.url(
-                for: .documentDirectory,
-                in: .userDomainMask,
-                appropriateFor: nil,
-                create: true
-            ).appendingPathComponent("Untitled.json") {
-                do {
-                    try json.write(to: url)
-                    print("Saved successfully")
-                } catch let error {
-                    print("Could not save: \(error)")
-                }
-            }
+    @IBAction func save(_ sender: UIBarButtonItem? = nil) {
+        document?.emojiArt = emojiArt
+        if document?.emojiArt != nil {
+            document?.updateChangeCount(.done)
         }
+    }
+    
+    @IBAction func close(_ sender: UIBarButtonItem) {
+        save()
+        document?.close()
     }
     
     @IBOutlet weak var dropZone: UIView! {

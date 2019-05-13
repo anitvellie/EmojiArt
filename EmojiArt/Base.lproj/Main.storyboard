@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9mb-U9-Dik">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8C4-T1-zED">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -155,6 +155,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="d8A-8J-rgM">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="XoQ-33-WII">
+                            <connections>
+                                <action selector="close:" destination="BYZ-38-t0r" id="mbE-yK-QKo"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="lmC-xj-oKD">
                             <connections>
                                 <action selector="save:" destination="BYZ-38-t0r" id="Jkq-R2-ufR"/>
@@ -195,7 +200,7 @@
         <!--Document Browser View Controller-->
         <scene sceneID="gSI-eW-cuF">
             <objects>
-                <viewController id="8C4-T1-zED" customClass="DocumentBrowserViewController" customModule="EmojiArt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DocumentMVC" id="8C4-T1-zED" customClass="DocumentBrowserViewController" customModule="EmojiArt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hgo-al-vZD">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
